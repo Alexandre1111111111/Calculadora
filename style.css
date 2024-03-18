@@ -1,0 +1,38 @@
+body {
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+}
+.calc {
+    height: 750px;
+    width: 600px;
+    background-color: rgb(128, 128, 128);
+    margin: 0 auto;
+    border: 3px solid rgb(85, 75, 70);
+    border-radius: 20px;
+    display: block;
+}
+.calculo {
+    height: 30%;
+    width: 100%;
+    border: 3px solid rgb(85, 75, 70);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: rgba(172, 158, 158, 0.3);
+}
+.nums {
+    height: 70%;
+    width: 100%;
+    border: 3px solid rgb(85, 75, 70);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+}
+.nums button {
+    height: 50px;
+    width: 100px;
+    margin: 0 auto;
+}
