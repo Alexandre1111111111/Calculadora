@@ -6,33 +6,60 @@ body {
     height: 100vh;
 }
 .calc {
-    height: 750px;
+    height: 800px;
     width: 600px;
     background-color: rgb(128, 128, 128);
     margin: 0 auto;
-    border: 3px solid rgb(85, 75, 70);
+    border: 5px solid rgb(231, 230, 230);
     border-radius: 20px;
     display: block;
 }
 .calculo {
     height: 30%;
     width: 100%;
-    border: 3px solid rgb(85, 75, 70);
+    border-bottom: 3px solid rgb(231, 230, 230);
+    background-color: rgba(172, 158, 158, 0.3);
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    background-color: rgba(172, 158, 158, 0.3);
 }
 .nums {
+    display: flex;
+    align-items: center;
     height: 70%;
-    width: 100%;
-    border: 3px solid rgb(85, 75, 70);
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    display: grid;
-    grid-template-columns: auto auto auto auto auto;
 }
 .nums button {
-    height: 50px;
-    width: 100px;
+    height: 100%;
+    width: 100%;
     margin: 0 auto;
+    font-size: 50px;
+    transition-duration: 0.1s;
+    border: 3px solid #7a7a7a;
+    cursor: pointer;
+    background-color: #ffffff;
+    text-shadow: 1px 1px 1px #3f3c3c;
+}
+.nums button:hover {
+    background-color: #b4b4b4;
+}
+.nums button:active {
+    background-color: #e7e7e7;
+}
+.btns {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-rows: 20% auto auto auto;
+}
+#um {
+    border-bottom-left-radius: 20px;
+}
+#igual {
+    border-bottom-right-radius: 20px;
+}
+#mais {
+
+}
+#menos {
+
 }
