@@ -5,7 +5,7 @@ body {
     margin: 0;
     height: 100vh;
 }
-.calc {
+.calculadora {
     height: 800px;
     width: 600px;
     background-color: rgb(128, 128, 128);
@@ -14,13 +14,15 @@ body {
     border-radius: 20px;
     display: block;
 }
-.calculo {
+.tela {
     height: 30%;
     width: 100%;
     border-bottom: 3px solid rgb(231, 230, 230);
     background-color: rgba(172, 158, 158, 0.3);
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
+    display: flex;
+    align-items: center;
 }
 .nums {
     display: flex;
@@ -49,7 +51,7 @@ body {
     width: 100%;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 20% auto auto auto;
+    grid-template-rows: 15% 15% auto auto auto;
 }
 #um {
     border-bottom-left-radius: 20px;
@@ -57,9 +59,41 @@ body {
 #igual {
     border-bottom-right-radius: 20px;
 }
-#mais {
-
+#elevado img {
+    height: 45px;
+    margin: 0 auto;
+    display: block;
 }
-#menos {
-
+#raiz img {
+    height: 45px;
+    margin: 0 auto;
+    display: block;
 }
+#clear img {
+    height: 45px;
+    margin: 0 auto;
+    display: block;
+}
+#abre {
+    font-size: 40px;
+}
+#fecha {
+    font-size: 40px;
+}
+#telatxt {
+    margin: 0 auto;
+    font-size: 60px;
+    width: 100%;
+    text-align: right;
+    padding: 20px;
+    background-color: #000;
+    color: rgb(121, 255, 121);
+    border-top: 1px solid rgb(121, 255, 121);
+    border-bottom: 1px solid rgb(121, 255, 121);
+    height: 100px;
+    letter-spacing: 6px;
+}
+html {
+    font-family: "News Cycle", sans-serif;
+    font-style: normal;
+  }
