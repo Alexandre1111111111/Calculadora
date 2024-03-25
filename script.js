@@ -32,6 +32,17 @@ let def;
 
 const btns = [um, dois, tres, quatro, cinco, seis, sete, oito, nove, zero, mais, menos, vezes, divisao, clear, CE, abre, fecha, raiz, elevado, igual,];
 
+btns[18].addEventListener("click", () => {
+    if(telatxt.textContent == res) {
+        clr();
+    }
+})
+btns[19].addEventListener("click", () => {
+    if(telatxt.textContent == res) {
+        clr();
+    }
+})
+
 for (let i = 0; i < 10; i++) {
     btns[i].addEventListener("click", () => {
         if(telatxt.textContent == res) {
