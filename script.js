@@ -423,6 +423,7 @@ function apg() {
             num = 0;
             n1 = 0
         }
+    num = 1;
 }
 function par1() {
 
