@@ -32,16 +32,9 @@ let def;
 
 const btns = [um, dois, tres, quatro, cinco, seis, sete, oito, nove, zero, mais, menos, vezes, divisao, clear, CE, abre, fecha, raiz, elevado, igual,];
 
-btns[18].addEventListener("click", () => {
-    if(telatxt.textContent == res) {
-        clr();
-    }
-})
-btns[19].addEventListener("click", () => {
-    if(telatxt.textContent == res) {
-        clr();
-    }
-})
+const som1 = new Audio('click.mp3');
+
+const sons = [som1];
 
 for (let i = 0; i < 10; i++) {
     btns[i].addEventListener("click", () => {
@@ -60,6 +53,8 @@ for (let i = 0; i < btns.length; i++) {
         }
         telatxt.style.color = "rgb(90, 248, 248)";
         telatxt.style.textShadow = "0px 5px 5px #1900ff";
+        sons[0].currentTime = 0;
+        sons[0].play();
     })
 }
 for (let i = 10; i < 13; i++) {
@@ -159,6 +154,7 @@ function conta() {
             telatxt.style.fontSize = "35px";
         }
         n2 = 0.1;
+        simb = "";
     }
     op = 0;
 }
@@ -405,6 +401,7 @@ function div() {
     }
 }
 function apg() {
+    if(res == "") {
     if(telatxt.textContent.length > 1) {
         if(num != 0) {
         telatxt.textContent = telatxt.textContent.slice(0, -1);
@@ -417,13 +414,14 @@ function apg() {
             n2 = Math.floor(n2 / 10);
         }
         }
-        }
-        else {
-            telatxt.textContent = 0;
-            num = 0;
-            n1 = 0
-        }
+    }
+    else {
+        clr();
+        num = 0;
+        n1 = 0
+    }
     num = 1;
+    }
 }
 function par1() {
 
@@ -549,6 +547,8 @@ function tcl(event) {
             one();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (no2):
             if(telatxt.textContent == res) {
@@ -557,6 +557,8 @@ function tcl(event) {
             two();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (no3):
             if(telatxt.textContent == res) {
@@ -565,6 +567,8 @@ function tcl(event) {
             three();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (no4):
             if(telatxt.textContent == res) {
@@ -573,6 +577,8 @@ function tcl(event) {
             four();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (no5):
             if(telatxt.textContent == res) {
@@ -581,6 +587,8 @@ function tcl(event) {
             five();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (no6):
             if(telatxt.textContent == res) {
@@ -589,6 +597,8 @@ function tcl(event) {
             six();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (no7):
             if(telatxt.textContent == res) {
@@ -597,6 +607,8 @@ function tcl(event) {
             seven();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (no8):
             if(telatxt.textContent == res) {
@@ -605,6 +617,8 @@ function tcl(event) {
             eight();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (no9):
             if(telatxt.textContent == res) {
@@ -613,6 +627,8 @@ function tcl(event) {
             nine();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (no0):
             if(telatxt.textContent == res) {
@@ -621,59 +637,83 @@ function tcl(event) {
             zro();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (tca):
             adc();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (tcs):
             sub();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (tcm):
             mult();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (tcd):
             div();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (tcapg):
             apg();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (tcCE):
             clr();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (tcabr):
             par1();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (tcfch):
             par2();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (tcraiz):
             rq();
-            telatxt.style.color = "rgb(90, 248, 248)";
-            telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            telatxt.style.color = "#F5ED00";
+            telatxt.style.textShadow = "0px 5px 5px #F49C00";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (tcpow):
             ptc();
             telatxt.style.color = "rgb(90, 248, 248)";
             telatxt.style.textShadow = "0px 5px 5px #1900ff";
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
         case (tceql):
             equal();
+            sons[0].currentTime = 0;
+            sons[0].play();
         break;
     }
 }
