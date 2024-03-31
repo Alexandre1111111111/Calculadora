@@ -727,10 +727,10 @@ function par1() {
         num2 += "(";
     }
     if(nparc != 0) {
-        telatxt.textContent = num2;
+        telatxt.textContent = telatxt.textContent + "(";
     }
     else {
-        telatxt.textContent = telatxt.textContent + "(";
+        telatxt.textContent = num + simb + num2;
     }
     inpar = true;
     npar++;
@@ -742,14 +742,17 @@ function par2() {
             zro();
         }
     if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "(" && nparc > 1) {
-        telatxt.textContent = num2;
+        telatxt.textContent = num + simb + num2;
     }
     if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "(") {
         conpar += 0;
         num2 += 0;
         num2 += ")";
         if(nparc == 1) {
-            telatxt.textContent = op + num2;
+            telatxt.textContent = num2;
+        }
+        else if(conpar.charAt(conpar.length - 1) == 0) {
+            telatxt.textContent = num + simb + num2;
         }
         par = true;
         conpar += ")";
@@ -757,7 +760,7 @@ function par2() {
     }
     else {
     num2 += ")";
-    telatxt.textContent = num2;
+    telatxt.textContent = num + simb + num2;
     par = true;
     conpar += ")";
     nparc--;
