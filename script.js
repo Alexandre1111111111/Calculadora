@@ -21,17 +21,24 @@ const fecha = document.querySelector("#fecha");
 const raiz = document.querySelector("#raiz");
 const elevado = document.querySelector("#elevado");
 const recap = document.querySelector("#recap");
+const negativo = document.querySelector("#negativo");
+const virgula = document.querySelector("#virgula");
 
 let num = BigInt(0);
 let op = 0;
-let num2;
+let num2 = "";
 let simb;
-let res = BigInt(0);
+let res = 0;
 let n1 = 0;
 let n2 = 0.1;
 let def;
+let inpar = false;
+let par = false;
+let conpar = "";
+let npar = 0;
+let nparc = 0;
 
-const btns = [um, dois, tres, quatro, cinco, seis, sete, oito, nove, zero, mais, menos, vezes, divisao, clear, CE, abre, fecha, raiz, elevado, igual,];
+const btns = [um, dois, tres, quatro, cinco, seis, sete, oito, nove, zero, mais, menos, vezes, divisao, clear, CE, abre, fecha, raiz, elevado, igual, negativo, virgula];
 
 const som1 = new Audio('click.mp3');
 
@@ -39,6 +46,9 @@ const sons = [som1];
 
 for (let i = 0; i < 10; i++) {
     btns[i].addEventListener("click", () => {
+        if (nparc != 0 && telatxt.textContent.charAt(telatxt.textContent.length - 1) == ")") {
+            mult();
+        }
         if(n2 == 0 && telatxt.textContent != op) {
             telatxt.textContent = telatxt.textContent.slice(0, -1);
             n2 = 0.1;
@@ -48,6 +58,7 @@ for (let i = 0; i < 10; i++) {
         }
     })
 }
+
 for (let i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", () => {
         if(telatxt.textContent.length > 12) {
@@ -65,14 +76,14 @@ for (let i = 0; i < btns.length; i++) {
 
 for (let i = 10; i <= 13; i++) {
     btns[i].addEventListener("click", () => {
-        if(n2 != 0.1) {
+        if(n2 != 0.1 || telatxt.textContent.charAt(telatxt.textContent.length - 1) == ")" && nparc == 0) {
             conta();
         }
     })
 }
 
 btns[19].addEventListener("click", () => {
-    if(n2 != 0.1) {
+    if(n2 != 0.1 || telatxt.textContent.charAt(telatxt.textContent.length - 1) == ")" && nparc == 0) {
         conta();
     }
 })
@@ -80,10 +91,19 @@ btns[19].addEventListener("click", () => {
 window.addEventListener("keydown", tcl);
 
 function conta() {
+    if(telatxt.textContent != res) {
+    if(npar != 0) {
+        for(npar; npar > 0; npar--) {
+            par2();
+        }
+    }
     if(telatxt.textContent != res && telatxt.textContent != op) {
         recap.textContent = telatxt.textContent;
     }
-    if(n2 != 0.1) {
+    if(par) {
+        n2 = eval(conpar);
+    }
+    if(n2 != 0.1 || !par) {
         switch (simb) {
             case "+":
                 if(res == 0) {
@@ -144,10 +164,10 @@ function conta() {
             break;
             case "^":
                 if(res == 0) {
-                    res = Math.pow(n1, n2);
+                    res = n1 ** n2;
                 }
                 else {
-                    res = Math.pow(res, n2);
+                    res **= n2;
                 }
                 telatxt.textContent = res;
                 if(telatxt.textContent.length > 12) {
@@ -172,15 +192,30 @@ function conta() {
         simb = "";
     }
     op = 0;
+    inpar = false;
+    conpar = "";
+    par = false;
+    npar = 0;
+    num2 = "";
+}
 }
 
 function clr() {
     telatxt.textContent = "0";
     recap.textContent = "";
-    num = "";
+    num = BigInt(0);
     op = 0;
+    num2 = "";
+    simb = "";
+    res = 0;
+    n1 = 0;
     n2 = 0.1;
-    res = "";
+    def = 0;
+    inpar = false;
+    par = false;
+    conpar = "";
+    npar = 0;
+    nparc = 0;
     telatxt.style.fontSize = "60px";
     telatxt.style.color = "rgb(90, 248, 248)";
     telatxt.style.textShadow = "0px 5px 5px #1900ff";
@@ -198,12 +233,18 @@ function one() {
         telatxt.textContent = num;
     }
     else {
+        if(!inpar) {
         if(n2 != 0.1) {
         def = n2 * 10 + 1;
         n2 = def;
         }
         else {
             n2 = n2 * 10;
+        }
+        }
+        else {
+            def = conpar + 1;
+            conpar = def;
         }
         num2 = telatxt.textContent + 1;
         telatxt.textContent = num2;
@@ -221,12 +262,18 @@ function two() {
         telatxt.textContent = num;
     }
     else {
+        if(!inpar) {
         if(n2 != 0.1) {
         def = n2 * 10 + 2;
         n2 = def;
         }
         else {
             n2 = n2 * 20;
+        }
+        }
+        else {
+            def = conpar + 2;
+            conpar = def;
         }
         num2 = telatxt.textContent + 2;
         telatxt.textContent = num2;
@@ -244,12 +291,18 @@ function three() {
         telatxt.textContent = num;
     }
     else {
+        if(!inpar) {
         if(n2 != 0.1) {
         def = n2 * 10 + 3;
         n2 = def;
         }
         else {
             n2 = n2 * 30;
+        }
+        }
+        else {
+            def = conpar + 3;
+            conpar = def;
         }
         num2 = telatxt.textContent + 3;
         telatxt.textContent = num2;
@@ -267,12 +320,18 @@ function four() {
         telatxt.textContent = num;
     }
     else {
+        if(!inpar) {
         if(n2 != 0.1) {
         def = n2 * 10 + 4;
         n2 = def;
         }
         else {
             n2 = n2 * 40;
+        }
+        }
+        else {
+            def = conpar + 4;
+            conpar = def;
         }
         num2 = telatxt.textContent + 4;
         telatxt.textContent = num2;
@@ -290,12 +349,18 @@ function five() {
         telatxt.textContent = num;
     }
     else {
+        if(!inpar) {
         if(n2 != 0.1) {
         def = n2 * 10 + 5;
         n2 = def;
         }
         else {
             n2 = n2 * 50;
+        }
+        }
+        else {
+            def = conpar + 5;
+            conpar = def;
         }
         num2 = telatxt.textContent + 5;
         telatxt.textContent = num2;
@@ -313,6 +378,7 @@ function six() {
         telatxt.textContent = num;
     }
     else {
+        if(!inpar) {
         if(n2 != 0.1) {
         def = n2 * 10 + 6;
         n2 = def;
@@ -320,6 +386,11 @@ function six() {
         else {
             n2 = n2 * 60;
         }
+        }
+    else {
+        def = conpar + 6;
+        conpar = def;
+    }
         num2 = telatxt.textContent + 6;
         telatxt.textContent = num2;
     }
@@ -336,6 +407,7 @@ function seven() {
         telatxt.textContent = num;
     }
     else {
+        if(!inpar) {
         if(n2 != 0.1) {
         def = n2 * 10 + 7;
         n2 = def;
@@ -343,6 +415,11 @@ function seven() {
         else {
             n2 = n2 * 70;
         }
+    }
+    else {
+        def = conpar + 7;
+        conpar = def;
+    }
         num2 = telatxt.textContent + 7;
         telatxt.textContent = num2;
     }
@@ -359,6 +436,7 @@ function eight() {
         telatxt.textContent = num;
     }
     else {
+        if(!inpar) {
         if(n2 != 0.1) {
         def = n2 * 10 + 8;
         n2 = def;
@@ -366,6 +444,11 @@ function eight() {
         else {
             n2 = n2 * 80;
         }
+    }
+    else {
+        def = conpar + 8;
+        conpar = def;
+    }
         num2 = telatxt.textContent + 8;
         telatxt.textContent = num2;
     }
@@ -382,6 +465,7 @@ function nine() {
         telatxt.textContent = num;
     }
     else {
+        if(!inpar) {
         if(n2 != 0.1) {
         def = n2 * 10 + 9;
         n2 = def;
@@ -389,17 +473,29 @@ function nine() {
         else {
             n2 = n2 * 90;
         }
+    }
+    else {
+        def = conpar + 9;
+        conpar = def;
+    }
         num2 = telatxt.textContent + 9;
         telatxt.textContent = num2;
     }
 }
 function zro() {
-    if(op == 0) {
+    if(!inpar) {
+    if(telatxt.textContent == 0) {
+        num = 0;
+        n1 = 0;
+        telatxt.textContent = 0;
+    }
+    else if(op == 0) {
         n1 = telatxt.textContent * 10 + 0;
         num = telatxt.textContent + 0;
         telatxt.textContent = num;
     }
     else {
+        if(!inpar) {
         if(n2 != 0.1) {
         def = n2 * 10 + 0;
         n2 = def;
@@ -407,9 +503,23 @@ function zro() {
         else {
             n2 = 0;
         }
+    }
         num2 = telatxt.textContent + 0;
         telatxt.textContent = num2;
+    }
+    }
+    else {
+        if(conpar.charAt(conpar.length - 1) == "(") {
+            conpar += 0;
+            num2 += 0;
+            telatxt.textContent = num + simb + num2;
         }
+        else if(conpar.charAt(conpar.length - 1) != 0) {
+            conpar += 0;
+            num2 += 0;
+            telatxt.textContent = num2;
+        }
+    }
 }
 function adc() {
     if(telatxt.textContent == 0) {
@@ -418,7 +528,8 @@ function adc() {
         num = 0;
         op = "0" + "+";
     }
-    else if(res == "") {
+    if(!inpar) {
+    if(res == "") {
         op = num + "+";
     }
     else {
@@ -426,6 +537,22 @@ function adc() {
     }
     telatxt.textContent = op;
     simb = "+";
+    }
+    else if(conpar.charAt(conpar.length - 1) != "+" && conpar.charAt(conpar.length - 1) != "(") {
+        if(conpar.charAt(conpar.length - 2) == "*" && conpar.charAt(conpar.length - 1) == "*") {
+            conpar = conpar.slice(0, -2);
+            num2 = num2.slice(0, -1);
+            telatxt.textContent = num2;
+        }
+        else if(conpar.charAt(conpar.length - 1) == "-" || conpar.charAt(conpar.length - 1) == "*" || conpar.charAt(conpar.length - 1) == "/") {
+            conpar = conpar.slice(0, -1);
+            num2 = num2.slice(0, -1);
+            telatxt.textContent = num2;
+        }
+        num2 += "+";
+        conpar += "+";
+        telatxt.textContent = num2;
+    }
 }
 function sub() {
     if(telatxt.textContent == 0) {
@@ -434,7 +561,8 @@ function sub() {
         num = 0;
         op = "0" + "-";
     }
-    else if(res == "") {
+    if(!inpar) {
+    if(res == "") {
         op = num + "-";
     }
     else {
@@ -443,6 +571,22 @@ function sub() {
     telatxt.textContent = op;
     simb = "-";
 }
+else if(conpar.charAt(conpar.length - 1) != "-" && conpar.charAt(conpar.length - 1) != "("){
+        if(conpar.charAt(conpar.length - 2) == "*" && conpar.charAt(conpar.length - 1) == "*") {
+            conpar = conpar.slice(0, -2);
+            num2 = num2.slice(0, -1);
+            telatxt.textContent = num2;
+        }
+        else if(conpar.charAt(conpar.length - 1) == "+" || conpar.charAt(conpar.length - 1) == "*" || conpar.charAt(conpar.length - 1) == "/" || conpar.charAt(conpar.length - 2) == "**") {
+            conpar = conpar.slice(0, -1);
+            num2 = num2.slice(0, -1);
+            telatxt.textContent = num2;
+        }
+    num2 += "-";
+    conpar += "-";
+    telatxt.textContent = num2;
+}
+}
 function mult() {
     if(telatxt.textContent == 0) {
         n1 = 0;
@@ -450,7 +594,8 @@ function mult() {
         num = 0;
         op = "0" + "x";
     }
-    else if(res == "") {
+    if(!inpar) {
+    if(res == "") {
         op = num + "x";
     }
     else {
@@ -459,6 +604,22 @@ function mult() {
     telatxt.textContent = op;
     simb = "x";
 }
+else if(conpar.charAt(conpar.length - 1) != "*" && conpar.charAt(conpar.length - 1) != "("){
+        if(conpar.charAt(conpar.length - 2) == "*" && conpar.charAt(conpar.length - 1) == "*") {
+            conpar = conpar.slice(0, -2);
+            num2 = num2.slice(0, -1);
+            telatxt.textContent = num2;
+        }
+        else if(conpar.charAt(conpar.length - 1) == "-" || conpar.charAt(conpar.length - 1) == "+" || conpar.charAt(conpar.length - 1) == "/" || conpar.charAt(conpar.length - 2) == "**") {
+            conpar = conpar.slice(0, -1);
+            num2 = num2.slice(0, -1);
+            telatxt.textContent = num2;
+        }
+    num2 += "x";
+    conpar += "*";
+    telatxt.textContent = num2;
+}
+}
 function div() {
     if(telatxt.textContent == 0) {
         n1 = 0;
@@ -466,7 +627,8 @@ function div() {
         num = 0;
         op = "0" + "÷";
     }
-    else if(res == "") {
+    if(!inpar) {
+    if(res == "") {
         op = num + "÷";
     }
     else {
@@ -475,7 +637,41 @@ function div() {
     telatxt.textContent = op;
     simb = "÷";
 }
+else if(conpar.charAt(conpar.length - 1) != "/" && conpar.charAt(conpar.length - 1) != "(") {
+        if(conpar.charAt(conpar.length - 2) == "*" && conpar.charAt(conpar.length - 1) == "*") {
+            conpar = conpar.slice(0, -2);
+            num2 = num2.slice(0, -1);
+            telatxt.textContent = num2;
+        }
+        else if(conpar.charAt(conpar.length - 1) == "-" || conpar.charAt(conpar.length - 1) == "*" || conpar.charAt(conpar.length - 1) == "+" || conpar.charAt(conpar.length - 2) == "**") {
+            conpar = conpar.slice(0, -1);
+            num2 = num2.slice(0, -1);
+            telatxt.textContent = num2;
+        }
+    num2 += "÷";
+    conpar += "/";
+    telatxt.textContent = num2;
+}
+}
 function apg() {
+    if(nparc != 0) {
+        conpar = conpar.slice(0, -1);
+    }
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "(") {
+        if(nparc == 1) {
+            inpar = false;
+        }
+        npar--;
+        nparc--;
+        conpar = conpar.slice(0, -1);
+    }
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == ")") {
+        inpar = true;
+        par = false;
+        npar++;
+        nparc++;
+        conpar = conpar.slice(0, -1);
+    }
     if(telatxt.textContent.length >= 21 && telatxt.textContent == num) {
         n1 = Math.floor(n1 / 10);
         num = Math.floor(num / 10);
@@ -484,8 +680,8 @@ function apg() {
     }
     else if(telatxt.textContent != res) {
     if(telatxt.textContent.length > 1) {
-        if(num != 0) {
         telatxt.textContent = telatxt.textContent.slice(0, -1);
+        num2 = num2.slice(0, -1);
         if(op == 0) {
         n1 = Math.floor(n1 / 10);
         num = Math.floor(num / 10);
@@ -494,20 +690,82 @@ function apg() {
         if (n2 != 0.1) {
             n2 = Math.floor(n2 / 10);
         }
-        }
     }
     else {
         clr();
         num = 0;
-        n1 = 0
+        n1 = 0;
+        conpar = "";
     }
     }
 }
 function par1() {
-
+    if(nparc != 0 && conpar.charAt(conpar.length - 1) != "(") {
+        if(conpar.charAt(conpar.length - 1) != "+" && conpar.charAt(conpar.length - 1) != "-" && conpar.charAt(conpar.length - 1) != "*" && conpar.charAt(conpar.length - 1) != "/") {
+            mult();
+        }
+    }
+    if(nparc == 0 && inpar) {
+        conta();
+    }
+    if(n2 != 0.1) {
+        conta();
+    }
+    if(op == 0) {
+        mult();
+    }
+    if(op == 0) {
+    if(res == "") {
+        op = num + "(";
+    }
+    else {
+        op = res + "(";
+    }
+    }
+    else {
+        conpar += "(";
+        num2 += "(";
+    }
+    if(nparc != 0) {
+        telatxt.textContent = num2;
+    }
+    else {
+        telatxt.textContent = telatxt.textContent + "(";
+    }
+    inpar = true;
+    npar++;
+    nparc++;
 }
 function par2() {
-
+    if(nparc != 0) {
+        if(conpar.charAt(conpar.length - 1) == "+" || conpar.charAt(conpar.length - 1) == "-" || conpar.charAt(conpar.length - 1) == "*" || conpar.charAt(conpar.length - 1) == "/") {
+            zro();
+        }
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "(" && nparc > 1) {
+        telatxt.textContent = num2;
+    }
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "(") {
+        conpar += 0;
+        num2 += 0;
+        num2 += ")";
+        if(nparc == 1) {
+            telatxt.textContent = op + num2;
+        }
+        par = true;
+        conpar += ")";
+        nparc--;
+    }
+    else {
+    num2 += ")";
+    telatxt.textContent = num2;
+    par = true;
+    conpar += ")";
+    nparc--;
+    }
+}
+else {
+    inpar = false;
+}
 }
 function rq() {
     conta();
@@ -542,6 +800,7 @@ function ptc() {
         num = 0;
         op = "0" + "^";
     }
+    if(!inpar) {
     if(res == "") {
         op = num + "^";
     }
@@ -550,6 +809,17 @@ function ptc() {
     }
     telatxt.textContent = op;
     simb = "^";
+}
+else if(conpar.charAt(conpar.length - 2) != "*" && conpar.charAt(conpar.length - 1) != "*" && conpar.charAt(conpar.length - 1) != "(") {
+        if(conpar.charAt(conpar.length - 1) == "-" || conpar.charAt(conpar.length - 1) == "*" || conpar.charAt(conpar.length - 1) == "/" || conpar.charAt(conpar.length - 1) == "+") {
+            conpar = conpar.slice(0, -1);
+            num2 = num2.slice(0, -1);
+            telatxt.textContent = num2;
+        }
+    num2 += "^";
+    conpar += "**";
+    telatxt.textContent = num2;
+}
 }
 function equal() {
     conta();

@@ -98,7 +98,7 @@ body {
     width: 100%;
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: 15% 15% auto auto auto;
+    grid-template-rows: 15% 15% auto auto auto 17%;
 }
 
 #elevado img {
@@ -158,10 +158,18 @@ body {
     background-color: rgb(3, 133, 143);
     color: #ffffff;
 }
-#zero {
-    grid-column-start: 1;
-    grid-column-end: 4;
+#negativo {
     border-bottom-left-radius: 20px;
+}
+#negativo img {
+    height: 45px;
+    margin: 0 auto;
+    display: block;
+}
+#virgula img {
+    height: 90px;
+    margin: 0 auto;
+    display: block;
 }
 #igual {
     border-bottom-right-radius: 20px;
