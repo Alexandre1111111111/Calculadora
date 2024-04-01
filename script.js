@@ -67,10 +67,10 @@ for (let i = 0; i < 10; i++) {
 for (let i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", () => {
         if(telatxt.textContent.length > 12) {
-            telatxt.style.fontSize = "40px";
+            telatxt.style.fontSize = "5vh";
         }
         else {
-            telatxt.style.fontSize = "60px";
+            telatxt.style.fontSize = "6vh";
         }
         telatxt.style.color = "rgb(90, 248, 248)";
         telatxt.style.textShadow = "0px 5px 5px #1900ff";
@@ -892,10 +892,10 @@ else {
 
 function est() {
     if(telatxt.textContent.length > 12) {
-        telatxt.style.fontSize = "35px";
+        telatxt.style.fontSize = "5vh";
     }
     else {
-        telatxt.style.fontSize = "60px";
+        telatxt.style.fontSize = "6vh";
     }
     telatxt.style.color = "rgb(90, 248, 248)";
     telatxt.style.textShadow = "0px 5px 5px #1900ff";
