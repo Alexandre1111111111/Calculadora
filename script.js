@@ -23,6 +23,10 @@ const elevado = document.querySelector("#elevado");
 const recap = document.querySelector("#recap");
 const negativo = document.querySelector("#negativo");
 const virgula = document.querySelector("#virgula");
+const configs = document.querySelector("#configs");
+const configimg = document.querySelector("#configimg");
+const ccls = document.querySelector(".ccls");
+const sha = document.querySelector("#sha");
 
 let num = BigInt(0);
 let op = 0;
@@ -37,6 +41,7 @@ let par = false;
 let conpar = "";
 let npar = 0;
 let nparc = 0;
+let dcm = false;
 
 const btns = [um, dois, tres, quatro, cinco, seis, sete, oito, nove, zero, mais, menos, vezes, divisao, clear, CE, abre, fecha, raiz, elevado, igual, negativo, virgula];
 
@@ -71,6 +76,10 @@ for (let i = 0; i < btns.length; i++) {
         telatxt.style.textShadow = "0px 5px 5px #1900ff";
         sons[0].currentTime = 0;
         sons[0].play();
+        console.log(num2);
+        console.log(conpar);
+        console.log(n1);
+        console.log(typeof(n1));
     })
 }
 
@@ -91,6 +100,8 @@ btns[19].addEventListener("click", () => {
 window.addEventListener("keydown", tcl);
 
 function conta() {
+    n1 *= 1;
+    n2 *= 1;
     if(telatxt.textContent != res) {
     if(npar != 0) {
         for(npar; npar > 0; npar--) {
@@ -216,6 +227,7 @@ function clr() {
     conpar = "";
     npar = 0;
     nparc = 0;
+    dcm = false;
     telatxt.style.fontSize = "60px";
     telatxt.style.color = "rgb(90, 248, 248)";
     telatxt.style.textShadow = "0px 5px 5px #1900ff";
@@ -228,14 +240,14 @@ function one() {
         telatxt.textContent = 1;
     }
     else if(op == 0) {
-        n1 = telatxt.textContent * 10 + 1;
+        n1 = telatxt.textContent + 1;
         num = telatxt.textContent + 1;
         telatxt.textContent = num;
     }
     else {
         if(!inpar) {
         if(n2 != 0.1) {
-        def = n2 * 10 + 1;
+        def = n2 + 1;
         n2 = def;
         }
         else {
@@ -257,14 +269,14 @@ function two() {
         telatxt.textContent = 2;
     }
     else if(op == 0) {
-        n1 = telatxt.textContent * 10 + 2;
+        n1 = telatxt.textContent + 2;
         num = telatxt.textContent + 2;
         telatxt.textContent = num;
     }
     else {
         if(!inpar) {
         if(n2 != 0.1) {
-        def = n2 * 10 + 2;
+        def = n2 + 2;
         n2 = def;
         }
         else {
@@ -286,14 +298,14 @@ function three() {
         telatxt.textContent = 3;
     }
     else if(op == 0) {
-        n1 = telatxt.textContent * 10 + 3;
+        n1 = telatxt.textContent + 3;
         num = telatxt.textContent + 3;
         telatxt.textContent = num;
     }
     else {
         if(!inpar) {
         if(n2 != 0.1) {
-        def = n2 * 10 + 3;
+        def = n2 + 3;
         n2 = def;
         }
         else {
@@ -315,14 +327,14 @@ function four() {
         telatxt.textContent = 4;
     }
     else if(op == 0) {
-        n1 = telatxt.textContent * 10 + 4;
+        n1 = telatxt.textContent + 4;
         num = telatxt.textContent + 4;
         telatxt.textContent = num;
     }
     else {
         if(!inpar) {
         if(n2 != 0.1) {
-        def = n2 * 10 + 4;
+        def = n2 + 4;
         n2 = def;
         }
         else {
@@ -344,14 +356,14 @@ function five() {
         telatxt.textContent = 5;
     }
     else if(op == 0) {
-        n1 = telatxt.textContent * 10 + 5;
+        n1 = telatxt.textContent + 5;
         num = telatxt.textContent + 5;
         telatxt.textContent = num;
     }
     else {
         if(!inpar) {
         if(n2 != 0.1) {
-        def = n2 * 10 + 5;
+        def = n2 + 5;
         n2 = def;
         }
         else {
@@ -373,14 +385,14 @@ function six() {
         telatxt.textContent = 6;
     }
     else if(op == 0) {
-        n1 = telatxt.textContent * 10 + 6;
+        n1 = telatxt.textContent + 6;
         num = telatxt.textContent + 6;
         telatxt.textContent = num;
     }
     else {
         if(!inpar) {
         if(n2 != 0.1) {
-        def = n2 * 10 + 6;
+        def = n2 + 6;
         n2 = def;
         }
         else {
@@ -402,14 +414,14 @@ function seven() {
         telatxt.textContent = 7;
     }
     else if(op == 0) {
-        n1 = telatxt.textContent * 10 + 7;
+        n1 = telatxt.textContent + 7;
         num = telatxt.textContent + 7;
         telatxt.textContent = num;
     }
     else {
         if(!inpar) {
         if(n2 != 0.1) {
-        def = n2 * 10 + 7;
+        def = n2 + 7;
         n2 = def;
         }
         else {
@@ -431,14 +443,14 @@ function eight() {
         telatxt.textContent = 8;
     }
     else if(op == 0) {
-        n1 = telatxt.textContent * 10 + 8;
+        n1 = telatxt.textContent + 8;
         num = telatxt.textContent + 8;
         telatxt.textContent = num;
     }
     else {
         if(!inpar) {
         if(n2 != 0.1) {
-        def = n2 * 10 + 8;
+        def = n2 + 8;
         n2 = def;
         }
         else {
@@ -460,14 +472,14 @@ function nine() {
         telatxt.textContent = 9;
     }
     else if(op == 0) {
-        n1 = telatxt.textContent * 10 + 9;
+        n1 = telatxt.textContent + 9;
         num = telatxt.textContent + 9;
         telatxt.textContent = num;
     }
     else {
         if(!inpar) {
         if(n2 != 0.1) {
-        def = n2 * 10 + 9;
+        def = n2 + 9;
         n2 = def;
         }
         else {
@@ -490,14 +502,14 @@ function zro() {
         telatxt.textContent = 0;
     }
     else if(op == 0) {
-        n1 = telatxt.textContent * 10 + 0;
+        n1 = telatxt.textContent + 0;
         num = telatxt.textContent + 0;
         telatxt.textContent = num;
     }
     else {
         if(!inpar) {
         if(n2 != 0.1) {
-        def = n2 * 10 + 0;
+        def = n2 + 0;
         n2 = def;
         }
         else {
@@ -726,11 +738,17 @@ function par1() {
         conpar += "(";
         num2 += "(";
     }
+    if(res == 0) {
+        num2 = num + simb + num2;
+    }
+    else {
+        num2 = res + simb + num2;
+    }
     if(nparc != 0) {
         telatxt.textContent = telatxt.textContent + "(";
     }
     else {
-        telatxt.textContent = num + simb + num2;
+        telatxt.textContent = num2;
     }
     inpar = true;
     npar++;
@@ -742,7 +760,7 @@ function par2() {
             zro();
         }
     if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "(" && nparc > 1) {
-        telatxt.textContent = num + simb + num2;
+        telatxt.textContent = num2;
     }
     if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "(") {
         conpar += 0;
@@ -752,7 +770,7 @@ function par2() {
             telatxt.textContent = num2;
         }
         else if(conpar.charAt(conpar.length - 1) == 0) {
-            telatxt.textContent = num + simb + num2;
+            telatxt.textContent = num2;
         }
         par = true;
         conpar += ")";
@@ -760,7 +778,7 @@ function par2() {
     }
     else {
     num2 += ")";
-    telatxt.textContent = num + simb + num2;
+    telatxt.textContent = num2;
     par = true;
     conpar += ")";
     nparc--;
@@ -836,6 +854,42 @@ function equal() {
     }
 }
 
+function positivo() {
+    
+}
+
+function decimal() {
+    if(nparc == 0) {
+    if(!dcm) {
+    if(res == 0) {
+        num2 = num + simb + num2;
+    }
+    else {
+        num2 = res + simb + num2;
+    }
+    }
+    if(op == 0) {
+        if(n1.toString().includes(".") == false) {
+            n1 += ".";
+            num2 += ".";
+            telatxt.textContent = num2;
+            dcm = true;
+        }
+    }
+    else {
+        if(n2.toString().includes(".") == false) {
+            n2 += ".";
+            num2 += ".";
+            telatxt.textContent = num2;
+            dcm = true;
+        }
+    }
+}
+else {
+    conpar += ".";
+}
+}
+
 function est() {
     if(telatxt.textContent.length > 12) {
         telatxt.style.fontSize = "35px";
@@ -847,6 +901,27 @@ function est() {
     telatxt.style.textShadow = "0px 5px 5px #1900ff";
     sons[0].currentTime = 0;
     sons[0].play();
+}
+
+function sett() {
+    if(configs.style.animationName != "moverconfig") {
+        configs.style.animationName = "moverconfig";
+        ccls.style.animationName = "moverccls";
+        ccls.style.display = "block";
+        sha.style.display = "block";
+        configimg.style.animationName = "moverconfigimg";
+        sha.style.animationName = "shablock";
+    }
+    else {
+        configs.style.animationName = "moverbackconfig";
+        ccls.style.animationName = "moverbackccls";
+        configimg.style.animationName = "moverbackconfigimg";
+        sha.style.animationName = "shanone";
+        setTimeout(() => {
+            ccls.style.display = "none";
+            sha.style.display = "none";
+        }, 500)
+    }
 }
 
 btns[0].addEventListener("click", one);
@@ -890,6 +965,12 @@ btns[18].addEventListener("click", rq);
 btns[19].addEventListener("click", ptc);
 
 btns[20].addEventListener("click", equal);
+
+btns[21].addEventListener("click", positivo);
+
+btns[22].addEventListener("click", decimal);
+
+configs.addEventListener("click", sett);
 
 function tcl(event) {
     const keyPressed = event.keyCode;
