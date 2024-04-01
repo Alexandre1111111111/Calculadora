@@ -158,25 +158,25 @@ body {
 }
 
 #elevado img {
-    height: 45px;
+    height: 5vh;
     margin: 0 auto;
     display: block;
 }
 #raiz img {
-    height: 45px;
+    height: 5vh;
     margin: 0 auto;
     display: block;
 }
 #clear img {
-    height: 45px;
+    height: 5vh;
     margin: 0 auto;
     display: block;
 }
 #abre {
-    font-size: 40px;
+    font-size: 5vh;
 }
 #fecha {
-    font-size: 40px;
+    font-size: 5vh;
 }
 #recap {
     display: inline-block;
@@ -196,7 +196,7 @@ body {
 #telatxt {
     display: flex;
     margin: 0 auto;
-    font-size: 60px;
+    font-size: 6vh;
     align-items: center;
     width: 100%;
     text-align: right;
@@ -223,7 +223,7 @@ body {
     display: block;
 }
 #virgula img {
-    height: 90px;
+    height: 9vh;
     margin: 0 auto;
     display: block;
 }
