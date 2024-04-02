@@ -103,14 +103,14 @@ body {
     direction: rtl;
 }
 .tela::-webkit-scrollbar {
-    background: #1900ff;
+    background: #4b4a4a36;
     height: 12px;
-    border: 1px solid #6cdfcf;
+    border: 1px solid #444444;
 }
 .tela::-webkit-scrollbar-thumb {
     border-radius: 50px;
-    border: 1px solid #3f3c3c;
-    background: #6cdfcf;
+    border: 1px solid #8d8d8d;
+    background: #383838;
 }
 .rc {
     display: flex;
