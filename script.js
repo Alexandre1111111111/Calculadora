@@ -425,7 +425,7 @@ function adc() {
         n1 = 0;
         n2 = 0.1;
         num = 0;
-        telatxt.textContent += 0;
+        telatxt.textContent = 0;
     }
     if(!inpar) {
         telatxt.textContent += "+";
@@ -443,7 +443,7 @@ function sub() {
         n1 = 0;
         n2 = 0.1;
         num = 0;
-        telatxt.textContent += 0;
+        telatxt.textContent = 0;
     }
     if(!inpar) {
         telatxt.textContent += "-";
@@ -461,7 +461,7 @@ function mult() {
         n1 = 0;
         n2 = 0.1;
         num = 0;
-        telatxt.textContent += 0;
+        telatxt.textContent = 0;
     }
     if(!inpar) {
         telatxt.textContent += "x";
@@ -479,7 +479,7 @@ function div() {
         n1 = 0;
         n2 = 0.1;
         num = 0;
-        telatxt.textContent += 0;
+        telatxt.textContent = 0;
     }
     if(!inpar) {
         telatxt.textContent += "÷";
@@ -588,7 +588,7 @@ function ptc() {
         n1 = 0;
         n2 = 0.1;
         num = 0;
-        telatxt.textContent += 0;
+        telatxt.textContent = 0;
     }
     if(!inpar) {
     telatxt.textContent += "^";
