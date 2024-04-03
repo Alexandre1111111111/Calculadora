@@ -55,7 +55,7 @@ for (let i = 0; i < 10; i++) {
             mult();
         }
         if(n2 == 0 && telatxt.textContent != op) {
-            telatxt.textContent = telatxt.textContent.slice(0, -1);
+            num2 = num2.slice(0, -1);
             n2 = 0.1;
         }
         if(telatxt.textContent == res) {
@@ -66,11 +66,13 @@ for (let i = 0; i < 10; i++) {
 
 for (let i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", () => {
+        num2 = telatxt.textContent;
+        telatxt.textContent = num2;
         if(telatxt.textContent.length > 12) {
-            telatxt.style.fontSize = "5vh";
+            telatxt.style.fontSize = "40px";
         }
         else {
-            telatxt.style.fontSize = "6vh";
+            telatxt.style.fontSize = "60px";
         }
         telatxt.style.color = "rgb(90, 248, 248)";
         telatxt.style.textShadow = "0px 5px 5px #1900ff";
@@ -78,8 +80,8 @@ for (let i = 0; i < btns.length; i++) {
         sons[0].play();
         console.log(num2);
         console.log(conpar);
-        console.log(n1);
-        console.log(typeof(n1));
+        console.log(num);
+        console.log(n2);
     })
 }
 
@@ -100,131 +102,38 @@ btns[19].addEventListener("click", () => {
 window.addEventListener("keydown", tcl);
 
 function conta() {
-    n1 *= 1;
-    n2 *= 1;
     if(telatxt.textContent != res) {
     if(npar != 0) {
         for(npar; npar > 0; npar--) {
             par2();
         }
     }
-    if(telatxt.textContent != res && telatxt.textContent != op) {
         recap.textContent = telatxt.textContent;
-    }
-    if(par) {
-        n2 = eval(conpar);
-    }
-    if(n2 != 0.1 || !par) {
-        switch (simb) {
-            case "+":
-                if(res == 0) {
-                    res = n1 + n2;
-                }
-                else {
-                    res += n2;
-                }
-                telatxt.textContent = res;
-                if(telatxt.textContent.length > 12) {
-                    telatxt.style.fontSize = "35px";
-                }
-                n2 = 0.1;
-            break;
-            case "-":
-                if(res == 0) {
-                    res = n1 - n2;
-                }
-                else {
-                    res -= n2;
-                }
-                telatxt.textContent = res;
-                if(telatxt.textContent.length > 12) {
-                    telatxt.style.fontSize = "35px";
-                }
-                n2 = 0.1;
-            break;
-            case "x":
-                if(res == 0) {
-                    res = n1 * n2;
-                }
-                else {
-                    res *= n2;
-                }
-                telatxt.textContent = res;
-                if(telatxt.textContent.length > 12) {
-                    telatxt.style.fontSize = "35px";
-                }
-                n2 = 0.1;
-            break;
-            case "÷":
-                if (n2 != 0) {
-                if(res == 0) {
-                    res = n1 / n2;
-                }
-                else {
-                    res /= n2;
-                }
-                telatxt.textContent = res;
-                if(telatxt.textContent.length > 12) {
-                    telatxt.style.fontSize = "35px";
-                }
-                n2 = 0.1;
-                }
-                else {
-                    telatxt.textContent = "Math Error";
-                }
-            break;
-            case "^":
-                if(res == 0) {
-                    res = n1 ** n2;
-                }
-                else {
-                    res **= n2;
-                }
-                telatxt.textContent = res;
-                if(telatxt.textContent.length > 12) {
-                    telatxt.style.fontSize = "35px";
-                }
-                n2 = 0.1;
-            break;
-        }
-    }
-    if(simb == "√") {
-        if(res == 0) {
-            res = Math.sqrt(n1);
-        }
-        else {
+        num2 = num2.replace(/x/g, "*");
+        num2 = num2.replace(/÷/g, "/");
+        num2 = num2.replaceAll("^", "**");
+        res = eval(num2);
+        if(simb == "√") {
             res = Math.sqrt(res);
         }
         telatxt.textContent = res;
-        if(telatxt.textContent.length > 12) {
-            telatxt.style.fontSize = "35px";
-        }
-        n2 = 0.1;
-        simb = "";
+    if(telatxt.textContent.length > 12) {
+        telatxt.style.fontSize = "35px";
     }
-    op = 0;
     inpar = false;
-    conpar = "";
     par = false;
     npar = 0;
-    num2 = "";
 }
 }
 
 function clr() {
     telatxt.textContent = "0";
     recap.textContent = "";
-    num = BigInt(0);
-    op = 0;
     num2 = "";
     simb = "";
     res = 0;
-    n1 = 0;
-    n2 = 0.1;
-    def = 0;
     inpar = false;
     par = false;
-    conpar = "";
     npar = 0;
     nparc = 0;
     dcm = false;
@@ -242,7 +151,7 @@ function one() {
     else if(op == 0) {
         n1 = telatxt.textContent + 1;
         num = telatxt.textContent + 1;
-        telatxt.textContent = num;
+        telatxt.textContent += 1;
     }
     else {
         if(!inpar) {
@@ -254,12 +163,7 @@ function one() {
             n2 = n2 * 10;
         }
         }
-        else {
-            def = conpar + 1;
-            conpar = def;
-        }
-        num2 = telatxt.textContent + 1;
-        telatxt.textContent = num2;
+        telatxt.textContent += 1;
     }
 }
 function two() {
@@ -271,7 +175,7 @@ function two() {
     else if(op == 0) {
         n1 = telatxt.textContent + 2;
         num = telatxt.textContent + 2;
-        telatxt.textContent = num;
+        telatxt.textContent += 2;
     }
     else {
         if(!inpar) {
@@ -287,8 +191,7 @@ function two() {
             def = conpar + 2;
             conpar = def;
         }
-        num2 = telatxt.textContent + 2;
-        telatxt.textContent = num2;
+        telatxt.textContent += 2;
     }
 }
 function three() {
@@ -300,7 +203,7 @@ function three() {
     else if(op == 0) {
         n1 = telatxt.textContent + 3;
         num = telatxt.textContent + 3;
-        telatxt.textContent = num;
+        telatxt.textContent += 3;
     }
     else {
         if(!inpar) {
@@ -316,8 +219,7 @@ function three() {
             def = conpar + 3;
             conpar = def;
         }
-        num2 = telatxt.textContent + 3;
-        telatxt.textContent = num2;
+        telatxt.textContent += 3;
     }
 }
 function four() {
@@ -329,7 +231,7 @@ function four() {
     else if(op == 0) {
         n1 = telatxt.textContent + 4;
         num = telatxt.textContent + 4;
-        telatxt.textContent = num;
+        telatxt.textContent += 4;
     }
     else {
         if(!inpar) {
@@ -345,8 +247,7 @@ function four() {
             def = conpar + 4;
             conpar = def;
         }
-        num2 = telatxt.textContent + 4;
-        telatxt.textContent = num2;
+        telatxt.textContent += 4;
     }
 }
 function five() {
@@ -358,7 +259,7 @@ function five() {
     else if(op == 0) {
         n1 = telatxt.textContent + 5;
         num = telatxt.textContent + 5;
-        telatxt.textContent = num;
+        telatxt.textContent += 5;
     }
     else {
         if(!inpar) {
@@ -374,8 +275,7 @@ function five() {
             def = conpar + 5;
             conpar = def;
         }
-        num2 = telatxt.textContent + 5;
-        telatxt.textContent = num2;
+        telatxt.textContent += 5;
     }
 }
 function six() {
@@ -387,7 +287,7 @@ function six() {
     else if(op == 0) {
         n1 = telatxt.textContent + 6;
         num = telatxt.textContent + 6;
-        telatxt.textContent = num;
+        telatxt.textContent += 6;
     }
     else {
         if(!inpar) {
@@ -403,8 +303,7 @@ function six() {
         def = conpar + 6;
         conpar = def;
     }
-        num2 = telatxt.textContent + 6;
-        telatxt.textContent = num2;
+    telatxt.textContent += 6;
     }
 }
 function seven() {
@@ -416,7 +315,7 @@ function seven() {
     else if(op == 0) {
         n1 = telatxt.textContent + 7;
         num = telatxt.textContent + 7;
-        telatxt.textContent = num;
+        telatxt.textContent += 7;
     }
     else {
         if(!inpar) {
@@ -432,8 +331,7 @@ function seven() {
         def = conpar + 7;
         conpar = def;
     }
-        num2 = telatxt.textContent + 7;
-        telatxt.textContent = num2;
+    telatxt.textContent += 7;
     }
 }
 function eight() {
@@ -445,7 +343,7 @@ function eight() {
     else if(op == 0) {
         n1 = telatxt.textContent + 8;
         num = telatxt.textContent + 8;
-        telatxt.textContent = num;
+        telatxt.textContent += 8;
     }
     else {
         if(!inpar) {
@@ -461,8 +359,7 @@ function eight() {
         def = conpar + 8;
         conpar = def;
     }
-        num2 = telatxt.textContent + 8;
-        telatxt.textContent = num2;
+    telatxt.textContent += 8;
     }
 }
 function nine() {
@@ -474,7 +371,7 @@ function nine() {
     else if(op == 0) {
         n1 = telatxt.textContent + 9;
         num = telatxt.textContent + 9;
-        telatxt.textContent = num;
+        telatxt.textContent += 9;
     }
     else {
         if(!inpar) {
@@ -490,21 +387,16 @@ function nine() {
         def = conpar + 9;
         conpar = def;
     }
-        num2 = telatxt.textContent + 9;
-        telatxt.textContent = num2;
+    telatxt.textContent += 9;
     }
 }
 function zro() {
     if(!inpar) {
     if(telatxt.textContent == 0) {
-        num = 0;
-        n1 = 0;
         telatxt.textContent = 0;
     }
     else if(op == 0) {
-        n1 = telatxt.textContent + 0;
-        num = telatxt.textContent + 0;
-        telatxt.textContent = num;
+        telatxt.textContent += 0;
     }
     else {
         if(!inpar) {
@@ -516,20 +408,15 @@ function zro() {
             n2 = 0;
         }
     }
-        num2 = telatxt.textContent + 0;
-        telatxt.textContent = num2;
+    telatxt.textContent += 0;
     }
     }
     else {
-        if(conpar.charAt(conpar.length - 1) == "(") {
-            conpar += 0;
-            num2 += 0;
-            telatxt.textContent = num + simb + num2;
+        if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "(") {
+            telatxt.textContent += 0;
         }
-        else if(conpar.charAt(conpar.length - 1) != 0) {
-            conpar += 0;
-            num2 += 0;
-            telatxt.textContent = num2;
+        else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != 0) {
+            telatxt.textContent += 0;
         }
     }
 }
@@ -538,32 +425,17 @@ function adc() {
         n1 = 0;
         n2 = 0.1;
         num = 0;
-        op = "0" + "+";
+        telatxt.textContent += 0;
     }
     if(!inpar) {
-    if(res == "") {
-        op = num + "+";
+        telatxt.textContent += "+";
+        simb = "+";
     }
-    else {
-        op = res + "+";
-    }
-    telatxt.textContent = op;
-    simb = "+";
-    }
-    else if(conpar.charAt(conpar.length - 1) != "+" && conpar.charAt(conpar.length - 1) != "(") {
-        if(conpar.charAt(conpar.length - 2) == "*" && conpar.charAt(conpar.length - 1) == "*") {
-            conpar = conpar.slice(0, -2);
-            num2 = num2.slice(0, -1);
-            telatxt.textContent = num2;
+    else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "+" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "(") {
+        if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷") {
+            telatxt.textContent = telatxt.textContent.slice(0, -1);
         }
-        else if(conpar.charAt(conpar.length - 1) == "-" || conpar.charAt(conpar.length - 1) == "*" || conpar.charAt(conpar.length - 1) == "/") {
-            conpar = conpar.slice(0, -1);
-            num2 = num2.slice(0, -1);
-            telatxt.textContent = num2;
-        }
-        num2 += "+";
-        conpar += "+";
-        telatxt.textContent = num2;
+        telatxt.textContent += "+";
     }
 }
 function sub() {
@@ -571,32 +443,17 @@ function sub() {
         n1 = 0;
         n2 = 0.1;
         num = 0;
-        op = "0" + "-";
+        telatxt.textContent += 0;
     }
     if(!inpar) {
-    if(res == "") {
-        op = num + "-";
+        telatxt.textContent += "-";
+        simb = "-";
     }
-    else {
-        op = res + "-";
+else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "-" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "("){
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷") {
+        telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
-    telatxt.textContent = op;
-    simb = "-";
-}
-else if(conpar.charAt(conpar.length - 1) != "-" && conpar.charAt(conpar.length - 1) != "("){
-        if(conpar.charAt(conpar.length - 2) == "*" && conpar.charAt(conpar.length - 1) == "*") {
-            conpar = conpar.slice(0, -2);
-            num2 = num2.slice(0, -1);
-            telatxt.textContent = num2;
-        }
-        else if(conpar.charAt(conpar.length - 1) == "+" || conpar.charAt(conpar.length - 1) == "*" || conpar.charAt(conpar.length - 1) == "/" || conpar.charAt(conpar.length - 2) == "**") {
-            conpar = conpar.slice(0, -1);
-            num2 = num2.slice(0, -1);
-            telatxt.textContent = num2;
-        }
-    num2 += "-";
-    conpar += "-";
-    telatxt.textContent = num2;
+    telatxt.textContent += "-";
 }
 }
 function mult() {
@@ -604,32 +461,17 @@ function mult() {
         n1 = 0;
         n2 = 0.1;
         num = 0;
-        op = "0" + "x";
+        telatxt.textContent += 0;
     }
     if(!inpar) {
-    if(res == "") {
-        op = num + "x";
+        telatxt.textContent += "x";
+        simb = "x";
     }
-    else {
-        op = res + "x";
+else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "x" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "("){
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷") {
+        telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
-    telatxt.textContent = op;
-    simb = "x";
-}
-else if(conpar.charAt(conpar.length - 1) != "*" && conpar.charAt(conpar.length - 1) != "("){
-        if(conpar.charAt(conpar.length - 2) == "*" && conpar.charAt(conpar.length - 1) == "*") {
-            conpar = conpar.slice(0, -2);
-            num2 = num2.slice(0, -1);
-            telatxt.textContent = num2;
-        }
-        else if(conpar.charAt(conpar.length - 1) == "-" || conpar.charAt(conpar.length - 1) == "+" || conpar.charAt(conpar.length - 1) == "/" || conpar.charAt(conpar.length - 2) == "**") {
-            conpar = conpar.slice(0, -1);
-            num2 = num2.slice(0, -1);
-            telatxt.textContent = num2;
-        }
-    num2 += "x";
-    conpar += "*";
-    telatxt.textContent = num2;
+    telatxt.textContent += "x";
 }
 }
 function div() {
@@ -637,37 +479,22 @@ function div() {
         n1 = 0;
         n2 = 0.1;
         num = 0;
-        op = "0" + "÷";
+        telatxt.textContent += 0;
     }
     if(!inpar) {
-    if(res == "") {
-        op = num + "÷";
+        telatxt.textContent += "÷";
+        simb = "÷";
     }
-    else {
-        op = res + "÷";
+else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "/" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "(") {
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+") {
+        telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
-    telatxt.textContent = op;
-    simb = "÷";
-}
-else if(conpar.charAt(conpar.length - 1) != "/" && conpar.charAt(conpar.length - 1) != "(") {
-        if(conpar.charAt(conpar.length - 2) == "*" && conpar.charAt(conpar.length - 1) == "*") {
-            conpar = conpar.slice(0, -2);
-            num2 = num2.slice(0, -1);
-            telatxt.textContent = num2;
-        }
-        else if(conpar.charAt(conpar.length - 1) == "-" || conpar.charAt(conpar.length - 1) == "*" || conpar.charAt(conpar.length - 1) == "+" || conpar.charAt(conpar.length - 2) == "**") {
-            conpar = conpar.slice(0, -1);
-            num2 = num2.slice(0, -1);
-            telatxt.textContent = num2;
-        }
-    num2 += "÷";
-    conpar += "/";
-    telatxt.textContent = num2;
+    telatxt.textContent += "÷";
 }
 }
 function apg() {
     if(nparc != 0) {
-        conpar = conpar.slice(0, -1);
+        telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
     if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "(") {
         if(nparc == 1) {
@@ -675,45 +502,32 @@ function apg() {
         }
         npar--;
         nparc--;
-        conpar = conpar.slice(0, -1);
+        telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
     if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == ")") {
         inpar = true;
         par = false;
         npar++;
         nparc++;
-        conpar = conpar.slice(0, -1);
+        telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
     if(telatxt.textContent.length >= 21 && telatxt.textContent == num) {
-        n1 = Math.floor(n1 / 10);
-        num = Math.floor(num / 10);
-        res = Math.floor(res / 10);
-        telatxt.textContent = num;
+        telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
     else if(telatxt.textContent != res) {
     if(telatxt.textContent.length > 1) {
         telatxt.textContent = telatxt.textContent.slice(0, -1);
-        num2 = num2.slice(0, -1);
-        if(op == 0) {
-        n1 = Math.floor(n1 / 10);
-        num = Math.floor(num / 10);
-        res = Math.floor(res / 10);
-        }
-        if (n2 != 0.1) {
-            n2 = Math.floor(n2 / 10);
-        }
     }
     else {
         clr();
         num = 0;
         n1 = 0;
-        conpar = "";
     }
     }
 }
 function par1() {
-    if(nparc != 0 && conpar.charAt(conpar.length - 1) != "(") {
-        if(conpar.charAt(conpar.length - 1) != "+" && conpar.charAt(conpar.length - 1) != "-" && conpar.charAt(conpar.length - 1) != "*" && conpar.charAt(conpar.length - 1) != "/") {
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "(") {
+        if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "^" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "+" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "-" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "x" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "÷") {
             mult();
         }
     }
@@ -723,64 +537,25 @@ function par1() {
     if(n2 != 0.1) {
         conta();
     }
-    if(op == 0) {
-        mult();
-    }
-    if(op == 0) {
-    if(res == "") {
-        op = num + "(";
-    }
-    else {
-        op = res + "(";
-    }
-    }
-    else {
-        conpar += "(";
-        num2 += "(";
-    }
-    if(res == 0) {
-        num2 = num + simb + num2;
-    }
-    else {
-        num2 = res + simb + num2;
-    }
-    if(nparc != 0) {
-        telatxt.textContent = telatxt.textContent + "(";
-    }
-    else {
-        telatxt.textContent = num2;
-    }
+    telatxt.textContent += "(";
     inpar = true;
     npar++;
     nparc++;
 }
 function par2() {
     if(nparc != 0) {
-        if(conpar.charAt(conpar.length - 1) == "+" || conpar.charAt(conpar.length - 1) == "-" || conpar.charAt(conpar.length - 1) == "*" || conpar.charAt(conpar.length - 1) == "/") {
-            zro();
+        if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷") {
+            telatxt.textContent += telatxt.textContent.charAt(telatxt.textContent.length - 2);
         }
-    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "(" && nparc > 1) {
-        telatxt.textContent = num2;
-    }
     if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "(") {
-        conpar += 0;
-        num2 += 0;
-        num2 += ")";
-        if(nparc == 1) {
-            telatxt.textContent = num2;
-        }
-        else if(conpar.charAt(conpar.length - 1) == 0) {
-            telatxt.textContent = num2;
-        }
+        telatxt.textContent += 0;
+        telatxt.textContent += ")";
         par = true;
-        conpar += ")";
         nparc--;
     }
     else {
-    num2 += ")";
-    telatxt.textContent = num2;
+    telatxt.textContent += ")";
     par = true;
-    conpar += ")";
     nparc--;
     }
 }
@@ -795,13 +570,7 @@ function rq() {
         n2 = 0.1;
         num = 0;
     }
-    if(res == "") {
-        op = "√" + num;
-    }
-    else {
-        op = "√" + res;
-    }
-    telatxt.textContent = op;
+    telatxt.textContent = "√" + telatxt.textContent;
     simb = "√";
     recap.textContent = telatxt.textContent;
     conta();
@@ -819,27 +588,17 @@ function ptc() {
         n1 = 0;
         n2 = 0.1;
         num = 0;
-        op = "0" + "^";
+        telatxt.textContent += 0;
     }
     if(!inpar) {
-    if(res == "") {
-        op = num + "^";
-    }
-    else {
-        op = res + "^";
-    }
-    telatxt.textContent = op;
+    telatxt.textContent += "^";
     simb = "^";
 }
-else if(conpar.charAt(conpar.length - 2) != "*" && conpar.charAt(conpar.length - 1) != "*" && conpar.charAt(conpar.length - 1) != "(") {
-        if(conpar.charAt(conpar.length - 1) == "-" || conpar.charAt(conpar.length - 1) == "*" || conpar.charAt(conpar.length - 1) == "/" || conpar.charAt(conpar.length - 1) == "+") {
-            conpar = conpar.slice(0, -1);
-            num2 = num2.slice(0, -1);
-            telatxt.textContent = num2;
-        }
-    num2 += "^";
-    conpar += "**";
-    telatxt.textContent = num2;
+else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "^" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "(") {
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷") {
+        telatxt.textContent = telatxt.textContent.slice(0, -1);
+    }
+    telatxt.textContent += "^";
 }
 }
 function equal() {
@@ -872,7 +631,6 @@ function decimal() {
         if(n1.toString().includes(".") == false) {
             n1 += ".";
             num2 += ".";
-            telatxt.textContent = num2;
             dcm = true;
         }
     }
@@ -880,22 +638,21 @@ function decimal() {
         if(n2.toString().includes(".") == false) {
             n2 += ".";
             num2 += ".";
-            telatxt.textContent = num2;
             dcm = true;
         }
     }
 }
 else {
-    conpar += ".";
+    telatxt.textContent += ".";
 }
 }
 
 function est() {
     if(telatxt.textContent.length > 12) {
-        telatxt.style.fontSize = "5vh";
+        telatxt.style.fontSize = "35px";
     }
     else {
-        telatxt.style.fontSize = "6vh";
+        telatxt.style.fontSize = "60px";
     }
     telatxt.style.color = "rgb(90, 248, 248)";
     telatxt.style.textShadow = "0px 5px 5px #1900ff";
