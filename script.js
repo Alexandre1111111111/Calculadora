@@ -27,21 +27,16 @@ const configs = document.querySelector("#configs");
 const configimg = document.querySelector("#configimg");
 const ccls = document.querySelector(".ccls");
 const sha = document.querySelector("#sha");
+const cls = document.querySelector("#cls");
+const cvr = document.querySelector("#cvr");
+const otr = document.querySelector("#otr");
 
-let num = BigInt(0);
-let op = 0;
-let num2 = "";
 let simb;
 let res = 0;
-let n1 = 0;
-let n2 = 0.1;
-let def;
 let inpar = false;
 let par = false;
-let conpar = "";
 let npar = 0;
 let nparc = 0;
-let dcm = false;
 
 const btns = [um, dois, tres, quatro, cinco, seis, sete, oito, nove, zero, mais, menos, vezes, divisao, clear, CE, abre, fecha, raiz, elevado, igual, negativo, virgula];
 
@@ -54,10 +49,6 @@ for (let i = 0; i < 10; i++) {
         if (nparc != 0 && telatxt.textContent.charAt(telatxt.textContent.length - 1) == ")") {
             mult();
         }
-        if(n2 == 0 && telatxt.textContent != op) {
-            num2 = num2.slice(0, -1);
-            n2 = 0.1;
-        }
         if(telatxt.textContent == res) {
             clr();
         }
@@ -66,35 +57,32 @@ for (let i = 0; i < 10; i++) {
 
 for (let i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", () => {
-        num2 = telatxt.textContent;
-        telatxt.textContent = num2;
+        if(telatxt.textContent == "Math Error") {
+            telatxt.textContent = 0;
+        }
         if(telatxt.textContent.length > 12) {
-            telatxt.style.fontSize = "40px";
+            telatxt.style.fontSize = "4vh";
         }
         else {
-            telatxt.style.fontSize = "60px";
+            telatxt.style.fontSize = "6vh";
         }
         telatxt.style.color = "rgb(90, 248, 248)";
         telatxt.style.textShadow = "0px 5px 5px #1900ff";
         sons[0].currentTime = 0;
         sons[0].play();
-        console.log(num2);
-        console.log(conpar);
-        console.log(num);
-        console.log(n2);
     })
 }
 
 for (let i = 10; i <= 13; i++) {
     btns[i].addEventListener("click", () => {
-        if(n2 != 0.1 || telatxt.textContent.charAt(telatxt.textContent.length - 1) == ")" && nparc == 0) {
+        if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == ")" && nparc == 0) {
             conta();
         }
     })
 }
 
 btns[19].addEventListener("click", () => {
-    if(n2 != 0.1 || telatxt.textContent.charAt(telatxt.textContent.length - 1) == ")" && nparc == 0) {
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == ")" && nparc == 0) {
         conta();
     }
 })
@@ -108,17 +96,33 @@ function conta() {
             par2();
         }
     }
-        recap.textContent = telatxt.textContent;
-        num2 = num2.replace(/x/g, "*");
-        num2 = num2.replace(/÷/g, "/");
-        num2 = num2.replaceAll("^", "**");
-        res = eval(num2);
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^") {
+        telatxt.textContent += 0;
+    }
+        if(simb == "√") {
+            recap.textContent = "√" + telatxt.textContent; 
+        }
+        else {
+            recap.textContent = telatxt.textContent;
+        }
+        telatxt.textContent = telatxt.textContent.replace(/x/g, "*");
+        telatxt.textContent = telatxt.textContent.replace(/÷/g, "/");
+        telatxt.textContent = telatxt.textContent.replaceAll("^", "**");
+        res = eval(telatxt.textContent);
         if(simb == "√") {
             res = Math.sqrt(res);
+            simb = "";
         }
-        telatxt.textContent = res;
+        if(res != "Infinity") {
+            telatxt.textContent = res;
+        }
+        else {
+            telatxt.style.color = "#ff0000";
+            telatxt.style.textShadow = "0px 5px 5px #ff8000";
+            telatxt.textContent = "Math Error";
+        }
     if(telatxt.textContent.length > 12) {
-        telatxt.style.fontSize = "35px";
+        telatxt.style.fontSize = "3.5vh";
     }
     inpar = false;
     par = false;
@@ -129,265 +133,87 @@ function conta() {
 function clr() {
     telatxt.textContent = "0";
     recap.textContent = "";
-    num2 = "";
     simb = "";
     res = 0;
     inpar = false;
     par = false;
     npar = 0;
     nparc = 0;
-    dcm = false;
-    telatxt.style.fontSize = "60px";
+    telatxt.style.fontSize = "6vh";
     telatxt.style.color = "rgb(90, 248, 248)";
     telatxt.style.textShadow = "0px 5px 5px #1900ff";
 }
 
 function one() {
     if(telatxt.textContent == 0) {
-        num = 1;
-        n1 = 1;
         telatxt.textContent = 1;
     }
-    else if(op == 0) {
-        n1 = telatxt.textContent + 1;
-        num = telatxt.textContent + 1;
-        telatxt.textContent += 1;
-    }
     else {
-        if(!inpar) {
-        if(n2 != 0.1) {
-        def = n2 + 1;
-        n2 = def;
-        }
-        else {
-            n2 = n2 * 10;
-        }
-        }
         telatxt.textContent += 1;
     }
 }
 function two() {
     if(telatxt.textContent == 0) {
-        num = 2;
-        n1 = 2;
         telatxt.textContent = 2;
     }
-    else if(op == 0) {
-        n1 = telatxt.textContent + 2;
-        num = telatxt.textContent + 2;
-        telatxt.textContent += 2;
-    }
     else {
-        if(!inpar) {
-        if(n2 != 0.1) {
-        def = n2 + 2;
-        n2 = def;
-        }
-        else {
-            n2 = n2 * 20;
-        }
-        }
-        else {
-            def = conpar + 2;
-            conpar = def;
-        }
         telatxt.textContent += 2;
     }
 }
 function three() {
     if(telatxt.textContent == 0) {
-        num = 3;
-        n1 = 3;
         telatxt.textContent = 3;
     }
-    else if(op == 0) {
-        n1 = telatxt.textContent + 3;
-        num = telatxt.textContent + 3;
-        telatxt.textContent += 3;
-    }
     else {
-        if(!inpar) {
-        if(n2 != 0.1) {
-        def = n2 + 3;
-        n2 = def;
-        }
-        else {
-            n2 = n2 * 30;
-        }
-        }
-        else {
-            def = conpar + 3;
-            conpar = def;
-        }
         telatxt.textContent += 3;
     }
 }
 function four() {
     if(telatxt.textContent == 0) {
-        num = 4;
-        n1 = 4;
         telatxt.textContent = 4;
     }
-    else if(op == 0) {
-        n1 = telatxt.textContent + 4;
-        num = telatxt.textContent + 4;
-        telatxt.textContent += 4;
-    }
     else {
-        if(!inpar) {
-        if(n2 != 0.1) {
-        def = n2 + 4;
-        n2 = def;
-        }
-        else {
-            n2 = n2 * 40;
-        }
-        }
-        else {
-            def = conpar + 4;
-            conpar = def;
-        }
         telatxt.textContent += 4;
     }
 }
 function five() {
     if(telatxt.textContent == 0) {
-        num = 5;
-        n1 = 5;
         telatxt.textContent = 5;
     }
-    else if(op == 0) {
-        n1 = telatxt.textContent + 5;
-        num = telatxt.textContent + 5;
-        telatxt.textContent += 5;
-    }
     else {
-        if(!inpar) {
-        if(n2 != 0.1) {
-        def = n2 + 5;
-        n2 = def;
-        }
-        else {
-            n2 = n2 * 50;
-        }
-        }
-        else {
-            def = conpar + 5;
-            conpar = def;
-        }
         telatxt.textContent += 5;
     }
 }
 function six() {
     if(telatxt.textContent == 0) {
-        num = 6;
-        n1 = 6;
         telatxt.textContent = 6;
     }
-    else if(op == 0) {
-        n1 = telatxt.textContent + 6;
-        num = telatxt.textContent + 6;
+    else {
         telatxt.textContent += 6;
-    }
-    else {
-        if(!inpar) {
-        if(n2 != 0.1) {
-        def = n2 + 6;
-        n2 = def;
-        }
-        else {
-            n2 = n2 * 60;
-        }
-        }
-    else {
-        def = conpar + 6;
-        conpar = def;
-    }
-    telatxt.textContent += 6;
     }
 }
 function seven() {
     if(telatxt.textContent == 0) {
-        num = 7;
-        n1 = 7;
         telatxt.textContent = 7;
     }
-    else if(op == 0) {
-        n1 = telatxt.textContent + 7;
-        num = telatxt.textContent + 7;
+    else {
         telatxt.textContent += 7;
-    }
-    else {
-        if(!inpar) {
-        if(n2 != 0.1) {
-        def = n2 + 7;
-        n2 = def;
-        }
-        else {
-            n2 = n2 * 70;
-        }
-    }
-    else {
-        def = conpar + 7;
-        conpar = def;
-    }
-    telatxt.textContent += 7;
     }
 }
 function eight() {
     if(telatxt.textContent == 0) {
-        num = 8;
-        n1 = 8;
         telatxt.textContent = 8;
     }
-    else if(op == 0) {
-        n1 = telatxt.textContent + 8;
-        num = telatxt.textContent + 8;
+    else {
         telatxt.textContent += 8;
-    }
-    else {
-        if(!inpar) {
-        if(n2 != 0.1) {
-        def = n2 + 8;
-        n2 = def;
-        }
-        else {
-            n2 = n2 * 80;
-        }
-    }
-    else {
-        def = conpar + 8;
-        conpar = def;
-    }
-    telatxt.textContent += 8;
     }
 }
 function nine() {
     if(telatxt.textContent == 0) {
-        num = 9;
-        n1 = 9;
         telatxt.textContent = 9;
     }
-    else if(op == 0) {
-        n1 = telatxt.textContent + 9;
-        num = telatxt.textContent + 9;
+    else {
         telatxt.textContent += 9;
-    }
-    else {
-        if(!inpar) {
-        if(n2 != 0.1) {
-        def = n2 + 9;
-        n2 = def;
-        }
-        else {
-            n2 = n2 * 90;
-        }
-    }
-    else {
-        def = conpar + 9;
-        conpar = def;
-    }
-    telatxt.textContent += 9;
     }
 }
 function zro() {
@@ -395,20 +221,8 @@ function zro() {
     if(telatxt.textContent == 0) {
         telatxt.textContent = 0;
     }
-    else if(op == 0) {
-        telatxt.textContent += 0;
-    }
     else {
-        if(!inpar) {
-        if(n2 != 0.1) {
-        def = n2 + 0;
-        n2 = def;
-        }
-        else {
-            n2 = 0;
-        }
-    }
-    telatxt.textContent += 0;
+        telatxt.textContent += 0;
     }
     }
     else {
@@ -422,17 +236,14 @@ function zro() {
 }
 function adc() {
     if(telatxt.textContent == 0) {
-        n1 = 0;
-        n2 = 0.1;
-        num = 0;
         telatxt.textContent = 0;
     }
-    if(!inpar) {
+    if(!inpar && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "+" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "-" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "÷" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "x" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "^" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != ".") {
         telatxt.textContent += "+";
         simb = "+";
     }
     else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "+" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "(") {
-        if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷") {
+        if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == ".") {
             telatxt.textContent = telatxt.textContent.slice(0, -1);
         }
         telatxt.textContent += "+";
@@ -440,17 +251,14 @@ function adc() {
 }
 function sub() {
     if(telatxt.textContent == 0) {
-        n1 = 0;
-        n2 = 0.1;
-        num = 0;
         telatxt.textContent = 0;
     }
-    if(!inpar) {
+    if(!inpar && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "+" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "-" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "÷" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "x" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "^" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != ".") {
         telatxt.textContent += "-";
         simb = "-";
     }
 else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "-" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "("){
-    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷") {
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == ".") {
         telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
     telatxt.textContent += "-";
@@ -458,17 +266,14 @@ else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "-" && tel
 }
 function mult() {
     if(telatxt.textContent == 0) {
-        n1 = 0;
-        n2 = 0.1;
-        num = 0;
         telatxt.textContent = 0;
     }
-    if(!inpar) {
+    if(!inpar && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "+" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "-" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "÷" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "x" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "^" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != ".") {
         telatxt.textContent += "x";
         simb = "x";
     }
 else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "x" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "("){
-    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷") {
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == ".") {
         telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
     telatxt.textContent += "x";
@@ -476,42 +281,34 @@ else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "x" && tel
 }
 function div() {
     if(telatxt.textContent == 0) {
-        n1 = 0;
-        n2 = 0.1;
-        num = 0;
         telatxt.textContent = 0;
     }
-    if(!inpar) {
+    if(!inpar && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "+" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "-" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "÷" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "x" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "^" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != ".") {
         telatxt.textContent += "÷";
         simb = "÷";
     }
-else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "/" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "(") {
-    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+") {
+else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "÷" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "(") {
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == ".") {
         telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
     telatxt.textContent += "÷";
 }
 }
 function apg() {
-    if(nparc != 0) {
-        telatxt.textContent = telatxt.textContent.slice(0, -1);
-    }
     if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "(") {
         if(nparc == 1) {
             inpar = false;
         }
         npar--;
         nparc--;
-        telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
     if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == ")") {
         inpar = true;
         par = false;
         npar++;
         nparc++;
-        telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
-    if(telatxt.textContent.length >= 21 && telatxt.textContent == num) {
+    if(telatxt.textContent.length >= 21) {
         telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
     else if(telatxt.textContent != res) {
@@ -520,12 +317,14 @@ function apg() {
     }
     else {
         clr();
-        num = 0;
-        n1 = 0;
     }
     }
 }
 function par1() {
+    if(telatxt.textContent == 0) {
+        telatxt.textContent = "(";
+    }
+    else {
     if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "(") {
         if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "^" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "+" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "-" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "x" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "÷") {
             mult();
@@ -534,10 +333,8 @@ function par1() {
     if(nparc == 0 && inpar) {
         conta();
     }
-    if(n2 != 0.1) {
-        conta();
-    }
     telatxt.textContent += "(";
+}
     inpar = true;
     npar++;
     nparc++;
@@ -564,53 +361,28 @@ else {
 }
 }
 function rq() {
-    conta();
-    if(telatxt.textContent == 0) {
-        n1 = 0;
-        n2 = 0.1;
-        num = 0;
-    }
-    telatxt.textContent = "√" + telatxt.textContent;
     simb = "√";
-    recap.textContent = telatxt.textContent;
-    conta();
-    if(n2 != 0) {
-        telatxt.style.color = "#F5ED00";
-        telatxt.style.textShadow = "0px 5px 5px #F49C00";
-    }
-    else {
-        telatxt.style.color = "#ff0000";
-        telatxt.style.textShadow = "0px 5px 5px #ff8000";
-    }
+    equal();
 }
 function ptc() {
     if(telatxt.textContent == 0) {
-        n1 = 0;
-        n2 = 0.1;
-        num = 0;
         telatxt.textContent = 0;
     }
-    if(!inpar) {
+    if(!inpar && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "+" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "-" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "÷" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "x" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "^" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != ".") {
     telatxt.textContent += "^";
     simb = "^";
 }
 else if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != "^" && telatxt.textContent.charAt(telatxt.textContent.length - 1) != "(") {
-    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷") {
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == ".") {
         telatxt.textContent = telatxt.textContent.slice(0, -1);
     }
     telatxt.textContent += "^";
 }
 }
 function equal() {
+    telatxt.style.color = "#F5ED00";
+    telatxt.style.textShadow = "0px 5px 5px #F49C00";
     conta();
-    if(n2 != 0) {
-        telatxt.style.color = "#F5ED00";
-        telatxt.style.textShadow = "0px 5px 5px #F49C00";
-    }
-    else {
-        telatxt.style.color = "#ff0000";
-        telatxt.style.textShadow = "0px 5px 5px #ff8000";
-    }
 }
 
 function positivo() {
@@ -618,41 +390,20 @@ function positivo() {
 }
 
 function decimal() {
-    if(nparc == 0) {
-    if(!dcm) {
-    if(res == 0) {
-        num2 = num + simb + num2;
-    }
-    else {
-        num2 = res + simb + num2;
-    }
-    }
-    if(op == 0) {
-        if(n1.toString().includes(".") == false) {
-            n1 += ".";
-            num2 += ".";
-            dcm = true;
+    if(telatxt.textContent.charAt(telatxt.textContent.length - 1) != ".") {
+        if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷") {
+            zro();
         }
+            telatxt.textContent += ".";
     }
-    else {
-        if(n2.toString().includes(".") == false) {
-            n2 += ".";
-            num2 += ".";
-            dcm = true;
-        }
-    }
-}
-else {
-    telatxt.textContent += ".";
-}
 }
 
 function est() {
     if(telatxt.textContent.length > 12) {
-        telatxt.style.fontSize = "35px";
+        telatxt.style.fontSize = "3.5vh";
     }
     else {
-        telatxt.style.fontSize = "60px";
+        telatxt.style.fontSize = "6vh";
     }
     telatxt.style.color = "rgb(90, 248, 248)";
     telatxt.style.textShadow = "0px 5px 5px #1900ff";
@@ -661,8 +412,7 @@ function est() {
 }
 
 function sett() {
-    if(configs.style.animationName != "moverconfig") {
-        configs.style.animationName = "moverconfig";
+    if(ccls.style.animationName != "moverccls") {
         ccls.style.animationName = "moverccls";
         ccls.style.display = "block";
         sha.style.display = "block";
@@ -670,14 +420,13 @@ function sett() {
         sha.style.animationName = "shablock";
     }
     else {
-        configs.style.animationName = "moverbackconfig";
         ccls.style.animationName = "moverbackccls";
         configimg.style.animationName = "moverbackconfigimg";
         sha.style.animationName = "shanone";
         setTimeout(() => {
             ccls.style.display = "none";
             sha.style.display = "none";
-        }, 500)
+        }, 300)
     }
 }
 
@@ -752,6 +501,7 @@ function tcl(event) {
     const tcraiz = 82;
     const tcpow = 222;
     const tceql = 187;
+    const esc = 27;
     switch (keyPressed) {
         case (no1):
             if(telatxt.textContent == res) {
@@ -862,10 +612,10 @@ function tcl(event) {
             sons[0].currentTime = 0;
             sons[0].play();
             if(telatxt.textContent.length > 12) {
-                telatxt.style.fontSize = "40px";
+                telatxt.style.fontSize = "4vh";
             }
             else {
-                telatxt.style.fontSize = "60px";
+                telatxt.style.fontSize = "6vh";
             }
         break;
         case (tcpow):
@@ -876,6 +626,9 @@ function tcl(event) {
             equal();
             sons[0].currentTime = 0;
             sons[0].play();
+        break;
+        case (esc):
+            sett();
         break;
     }
 }
