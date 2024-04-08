@@ -30,6 +30,19 @@ const sha = document.querySelector("#sha");
 const cls = document.querySelector("#cls");
 const cvr = document.querySelector("#cvr");
 const otr = document.querySelector("#otr");
+const esq = document.querySelector("#esq");
+const dir = document.querySelector("#dir");
+const btnspl = document.querySelector("#btnspl");
+const btnctf = document.querySelector("#btnctf");
+const btntres = document.querySelector("#btntres");
+const btnprm = document.querySelector("#btnprm");
+const btnseg = document.querySelector("#btnseg");
+const cals = document.querySelector(".cals");
+const conv = document.querySelector(".conv");
+const outros = document.querySelector(".outros");
+const settings = document.querySelector("#settings");
+const allcg = document.querySelector("#allcg");
+const options = document.querySelector(".options");
 
 let simb;
 let res = 0;
@@ -412,21 +425,85 @@ function est() {
 }
 
 function sett() {
-    if(ccls.style.animationName != "moverccls") {
-        ccls.style.animationName = "moverccls";
-        ccls.style.display = "block";
+    if(options.style.animationName != "moverccls") {
+        options.style.animationName = "moverccls";
+        options.style.display = "flex";
         sha.style.display = "block";
         configimg.style.animationName = "moverconfigimg";
         sha.style.animationName = "shablock";
     }
     else {
-        ccls.style.animationName = "moverbackccls";
+        options.style.animationName = "moverbackccls";
         configimg.style.animationName = "moverbackconfigimg";
         sha.style.animationName = "shanone";
+        allcg.style.opacity = "0";
+        allcg.style.display = "none";
+        options.style.width = "0%";
         setTimeout(() => {
-            ccls.style.display = "none";
+            options.style.display = "none";
             sha.style.display = "none";
         }, 300)
+    }
+}
+
+function direita() {
+    if(cls.style.left == "") {
+    cls.style.left = "-15vh";
+    cls.style.color = "#ffffff52";
+    cls.style.borderColor = "#ffffff52";
+    cvr.style.left = "-15vh";
+    cvr.style.color = "#ffffff";
+    cvr.style.borderColor = "#ffffff";
+    otr.style.left = "-15vh";
+    cals.style.display = "none";
+    conv.style.display = "flex";
+    }
+    else if(cls.style.left == "-15vh") {
+        cls.style.left = "-30vh";
+        cvr.style.left = "-30vh";
+        cvr.style.color = "#ffffff52";
+        cvr.style.borderColor = "#ffffff52";
+        otr.style.left = "-30vh";
+        otr.style.color = "#ffffff";
+        otr.style.borderColor = "#ffffff";
+        conv.style.display = "none";
+        outros.style.display = "flex";
+    }
+}
+function esquerda() {
+    if(cls.style.left == "-15vh") {
+    cls.style.left = "";
+    cls.style.color = "#ffffff";
+    cls.style.borderColor = "#ffffff";
+    cvr.style.left = "";
+    cvr.style.color = "#ffffff52";
+    cvr.style.borderColor = "#ffffff52";
+    otr.style.left = "";
+    cals.style.display = "flex";
+    conv.style.display = "none";
+    }
+    else if(cls.style.left == "-30vh") {
+        cls.style.left = "-15vh";
+        cvr.style.left = "-15vh";
+        cvr.style.color = "#ffffff";
+        cvr.style.borderColor = "#ffffff";
+        otr.style.left = "-15vh";
+        otr.style.color = "#ffffff52";
+        otr.style.borderColor = "#ffffff52";
+        outros.style.display = "none";
+        conv.style.display = "flex";
+    }
+}
+
+function cg() {
+    if(allcg.style.opacity != "1") {
+        options.style.width = "100%";
+        allcg.style.display = "flex";
+        allcg.style.opacity = "1";
+    }
+    else {
+        options.style.width = "0%";
+        allcg.style.opacity = "0";
     }
 }
 
@@ -477,6 +554,39 @@ btns[21].addEventListener("click", positivo);
 btns[22].addEventListener("click", decimal);
 
 configs.addEventListener("click", sett);
+
+dir.addEventListener("click", direita);
+
+esq.addEventListener("click", esquerda);
+
+settings.addEventListener("click", cg);
+
+sha.addEventListener("click", () => {
+    if(ccls.style.animationName != "moverbackccls") {
+        sett();
+    }
+})
+
+cls.addEventListener("click", () => {
+    if(cls.style.left == "-15vh") {
+        esquerda();
+    }
+});
+
+cvr.addEventListener("click", () => {
+    if(cls.style.left == "") {
+        direita();
+    }
+    else {
+        esquerda()
+    }
+});
+
+otr.addEventListener("click", () => {
+    if(cls.style.left == "-15vh") {
+        direita();
+    }
+});
 
 function tcl(event) {
     const keyPressed = event.keyCode;
