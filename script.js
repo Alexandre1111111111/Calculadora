@@ -43,6 +43,9 @@ const outros = document.querySelector(".outros");
 const settings = document.querySelector("#settings");
 const allcg = document.querySelector("#allcg");
 const options = document.querySelector(".options");
+const select = document.querySelector(".select");
+const btnrng = document.querySelector("#btnrng");
+const calculadora = document.querySelector(".calculadora");
 
 let simb;
 let res = 0;
@@ -72,12 +75,6 @@ for (let i = 0; i < btns.length; i++) {
     btns[i].addEventListener("click", () => {
         if(telatxt.textContent == "Math Error") {
             telatxt.textContent = 0;
-        }
-        if(telatxt.textContent.length > 12) {
-            telatxt.style.fontSize = "4vh";
-        }
-        else {
-            telatxt.style.fontSize = "6vh";
         }
         telatxt.style.color = "rgb(90, 248, 248)";
         telatxt.style.textShadow = "0px 5px 5px #1900ff";
@@ -112,17 +109,13 @@ function conta() {
     if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "^") {
         telatxt.textContent += 0;
     }
-        if(simb == "√") {
-            recap.textContent = "√" + telatxt.textContent; 
-        }
-        else {
-            recap.textContent = telatxt.textContent;
-        }
+        recap.textContent = telatxt.textContent;
         telatxt.textContent = telatxt.textContent.replace(/x/g, "*");
         telatxt.textContent = telatxt.textContent.replace(/÷/g, "/");
         telatxt.textContent = telatxt.textContent.replaceAll("^", "**");
         res = eval(telatxt.textContent);
         if(simb == "√") {
+            recap.textContent = "√" + res; 
             res = Math.sqrt(res);
             simb = "";
         }
@@ -407,7 +400,7 @@ function decimal() {
         if(telatxt.textContent.charAt(telatxt.textContent.length - 1) == "+" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "-" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "x" || telatxt.textContent.charAt(telatxt.textContent.length - 1) == "÷") {
             zro();
         }
-            telatxt.textContent += ".";
+        telatxt.textContent += ".";
     }
 }
 
@@ -447,23 +440,19 @@ function sett() {
 }
 
 function direita() {
-    if(cls.style.left == "") {
-    cls.style.left = "-15vh";
+    if(select.style.left == "") {
+    select.style.left = "-14vh";
     cls.style.color = "#ffffff52";
     cls.style.borderColor = "#ffffff52";
-    cvr.style.left = "-15vh";
     cvr.style.color = "#ffffff";
     cvr.style.borderColor = "#ffffff";
-    otr.style.left = "-15vh";
     cals.style.display = "none";
     conv.style.display = "flex";
     }
-    else if(cls.style.left == "-15vh") {
-        cls.style.left = "-30vh";
-        cvr.style.left = "-30vh";
+    else if(select.style.left == "-14vh") {
+        select.style.left = "-31vh";
         cvr.style.color = "#ffffff52";
         cvr.style.borderColor = "#ffffff52";
-        otr.style.left = "-30vh";
         otr.style.color = "#ffffff";
         otr.style.borderColor = "#ffffff";
         conv.style.display = "none";
@@ -471,23 +460,19 @@ function direita() {
     }
 }
 function esquerda() {
-    if(cls.style.left == "-15vh") {
-    cls.style.left = "";
+    if(select.style.left == "-14vh") {
+    select.style.left = "";
     cls.style.color = "#ffffff";
     cls.style.borderColor = "#ffffff";
-    cvr.style.left = "";
     cvr.style.color = "#ffffff52";
     cvr.style.borderColor = "#ffffff52";
-    otr.style.left = "";
     cals.style.display = "flex";
     conv.style.display = "none";
     }
-    else if(cls.style.left == "-30vh") {
-        cls.style.left = "-15vh";
-        cvr.style.left = "-15vh";
+    else if(select.style.left == "-31vh") {
+        select.style.left = "-14vh";
         cvr.style.color = "#ffffff";
         cvr.style.borderColor = "#ffffff";
-        otr.style.left = "-15vh";
         otr.style.color = "#ffffff52";
         otr.style.borderColor = "#ffffff52";
         outros.style.display = "none";
@@ -505,6 +490,11 @@ function cg() {
         options.style.width = "0%";
         allcg.style.opacity = "0";
     }
+}
+
+function trcsim() {
+    calculadora.style.display = "block";
+    roleta.style.display = "none";
 }
 
 btns[0].addEventListener("click", one);
@@ -561,6 +551,8 @@ esq.addEventListener("click", esquerda);
 
 settings.addEventListener("click", cg);
 
+btnspl.addEventListener("click", trcsim);
+
 sha.addEventListener("click", () => {
     if(ccls.style.animationName != "moverbackccls") {
         sett();
@@ -568,13 +560,13 @@ sha.addEventListener("click", () => {
 })
 
 cls.addEventListener("click", () => {
-    if(cls.style.left == "-15vh") {
+    if(select.style.left == "-14vh") {
         esquerda();
     }
 });
 
 cvr.addEventListener("click", () => {
-    if(cls.style.left == "") {
+    if(select.style.left == "") {
         direita();
     }
     else {
@@ -583,7 +575,7 @@ cvr.addEventListener("click", () => {
 });
 
 otr.addEventListener("click", () => {
-    if(cls.style.left == "-15vh") {
+    if(select.style.left == "-14vh") {
         direita();
     }
 });
