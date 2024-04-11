@@ -113,7 +113,7 @@ function conta() {
         telatxt.textContent = telatxt.textContent.replace(/x/g, "*");
         telatxt.textContent = telatxt.textContent.replace(/÷/g, "/");
         telatxt.textContent = telatxt.textContent.replaceAll("^", "**");
-        res = eval(telatxt.textContent);
+        res = eval?.(`"use strict"; (${telatxt.textContent})`);
         if(simb == "√") {
             recap.textContent = "√" + res; 
             res = Math.sqrt(res);

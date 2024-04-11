@@ -2,7 +2,7 @@ const roleta = document.querySelector(".roleta");
 const girar = document.querySelector("#girar");
 const rolimg = document.querySelector("#rolimg");
 
-let random;
+let graus = -1;
 
 function trcrol() {
     calculadora.style.display = "none";
@@ -10,8 +10,8 @@ function trcrol() {
 }
 
 function rodar() {
-    random = Math.floor(Math.random() * 150 * 200);
-    rolimg.style.rotate = `${random}deg`;
+    graus += Math.round(75 * 10 * Math.random() * 10) * -1;
+    rolimg.style.rotate = `${graus}deg`;
 }
 
 btnrng.addEventListener("click", trcrol);

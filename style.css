@@ -373,6 +373,7 @@ body {
     background-color: rgba(0, 0, 0, 0);
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
+    z-index: 1;
 }
 #allcg {
     margin: 0 auto;

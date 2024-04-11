@@ -7,7 +7,7 @@
 }
 .roleta img {
     height: 100%;
-    transition-duration: 30s;
+    transition-duration: 20s;
     margin: 0 auto;
     display: block;
 }
@@ -15,6 +15,7 @@
     height: 10vh;
     cursor: pointer;
     width: 10vh;
+    padding: 0;
     font-size: 2.5vh;
     margin: 0 auto;
     position: absolute;
